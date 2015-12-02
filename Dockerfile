@@ -12,9 +12,7 @@ ENV APPDYNAMICS_URL https://packages.appdynamics.com/java
 
 COPY AppServerAgent.zip /tmp/AppServerAgent.zip
 
-RUN mkdir -p /opt/java-agent
-
-
+RUN mkdir -p /opt/java-agent &&
     unzip -q /tmp/AppServerAgent.zip -d /opt/java-agent && \
     chmod -R 777 /opt/java-agent/ver$APPDYNAMICS_AGENT_VERSION && \
     rm -rf /tmp/AppServerAgent.zip
