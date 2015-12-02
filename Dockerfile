@@ -9,10 +9,13 @@ USER root
 
 ENV APPDYNAMICS_AGENT_VERSION 4.1.7.1
 ENV APPDYNAMICS_URL https://packages.appdynamics.com/java
+
+COPY AppServerAgent.zip
+
 RUN mkdir -p /opt/java-agent && \
-    unzip -q AppServerAgent-$APPDYNAMICS_AGENT_VERSION.zip -d /opt/java-agent && \
+    unzip -q AppServerAgent.zip -d /opt/java-agent && \
     chmod -R 777 /opt/java-agent/ver$APPDYNAMICS_AGENT_VERSION && \
-    rm -rf AppServerAgent-$APPDYNAMICS_AGENT_VERSION.zip
+    rm -rf AppServerAgent.zip
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./sti/bin/ /usr/local/sti
