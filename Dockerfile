@@ -19,7 +19,7 @@ RUN mkdir -p /opt/java-agent && \
 
 # Copy the S2I scripts from the specific language image to $STI_SCRIPTS_PATH
 COPY ./sti/bin/ /usr/local/sti
-
+RUN chmod -r 755 /usr/local/sti
 
 ##########################################################
 # Create jboss user
