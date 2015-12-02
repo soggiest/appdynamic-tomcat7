@@ -30,7 +30,7 @@ COPY ./sti/bin/ /usr/local/sti
 
 EXPOSE 8080 4447 9990
 
-USER jboss
+USER 185
 
 
 CMD /usr/local/sti/usage
