@@ -21,6 +21,10 @@ RUN mkdir -p /opt/java-agent && \
 COPY ./sti/bin/ /usr/local/sti
 RUN chmod -R 755 /usr/local/sti
 
+COPY cacerts.jks /opt/java-agent/ver4.1.7.1/conf/cacerts.jks
+
+COPY controller-info.xml /opt/java-agent/ver4.1.7.1/conf/controller-info.xml
+
 ##########################################################
 # Create jboss user
 ##########################################################
