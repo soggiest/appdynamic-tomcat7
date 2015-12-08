@@ -25,6 +25,10 @@ COPY cacerts.jks /opt/java-agent/ver4.1.7.1/conf/cacerts.jks
 
 COPY controller-info.xml /opt/java-agent/ver4.1.7.1/conf/controller-info.xml
 
+RUN chmod -R 777 /opt/java-agent/ver4.1.7.1/conf/cacerts.jks
+
+RUN chmod -R 777 /opt/java-agent/ver4.1.7.1/conf/controller-info.xml
+
 ##########################################################
 # Create jboss user
 ##########################################################
