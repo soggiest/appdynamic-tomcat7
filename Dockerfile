@@ -21,11 +21,15 @@ RUN mkdir -p /opt/java-agent && \
 COPY ./sti/bin/ /usr/local/sti
 RUN chmod -R 755 /usr/local/sti
 
-COPY cacerts.jks /opt/java-agent/ver4.1.7.1/conf/cacerts.jks
+#COPY cacerts.jks /opt/java-agent/ver4.1.7.1/conf/cacerts.jks
+
+RUN cp /etc/pki/java/cacerts /opt/java-agent/ver4.1.7.1/conf/cacerts
 
 COPY controller-info.xml /opt/java-agent/ver4.1.7.1/conf/controller-info.xml
 
-RUN chmod -R 777 /opt/java-agent/ver4.1.7.1/conf/cacerts.jks
+#RUN chmod -R 777 /opt/java-agent/ver4.1.7.1/conf/cacerts.jks
+
+RUN chmod -R 777 /opt/java-agent/ver4.1.7.1/conf/cacerts
 
 RUN chmod -R 777 /opt/java-agent/ver4.1.7.1/conf/controller-info.xml
 
