@@ -26,10 +26,12 @@ RUN chmod -R 755 /usr/local/sti
 COPY DigiCertGlobalRootCA /tmp/DigiCertGlobalRootCA
 COPY DigiCertSHA2SecureServerCA /tmp/DigiCertSHA2SecureServerCA
 COPY saas.appdynamics.com.cer /tmp/saas.appdynamics.com.cer
+COPY amgen_subca.crt /tmp/amgen_subca.crt
 
 RUN keytool --importcert --noprompt -trustcacerts -alias AppRootCA -file /tmp/DigiCertGlobalRootCA -keystore /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.45-30.b13.el7_1.x86_64/jre/lib/security/cacerts -storepass changeit
 RUN keytool --importcert --noprompt -trustcacerts -alias AppdSecureCA -file /tmp/DigiCertSHA2SecureServerCA -keystore /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.45-30.b13.el7_1.x86_64/jre/lib/security/cacerts -storepass changeit
 RUN keytool --importcert --noprompt -trustcacerts -alias AppCert -file /tmp/saas.appdynamics.com.cer -keystore /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.45-30.b13.el7_1.x86_64/jre/lib/security/cacerts -storepass changeit
+RUN keytool --importcert --noprompt -trustcacerts -alias AmgenSubCA -file /tmp/amgen_subca.crt -keystore /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.45-30.b13.el7_1.x86_64/jre/lib/security/cacerts -storepass changeit
 
 #RUN cp /etc/pki/java/cacerts /opt/java-agent/ver4.1.7.1/conf/cacerts
 
