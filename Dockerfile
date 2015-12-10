@@ -23,6 +23,14 @@ RUN chmod -R 755 /usr/local/sti
 
 COPY cacerts.jks /opt/java-agent/ver4.1.7.1/conf/cacerts.jks
 
+COPY DigiCertGlobalRootCA /tmp/DigiCertGlobalRootCA
+COPY DigiCertSHA2SecureServerCA /tmp/DigiCertSHA2SecureServerCA
+COPY saas.appdynamics.com.cer /tmp/saas.appdynamics.com.cer
+
+RUN keytool import -alias AppRootCA -file /tmp/DigiCertGlobalRootCA -keystore /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.45-30.b13.el7_1.x86_64/jre/lib/security/cacerts
+RUN keytool import -alias AppdSecureCA -file /tmp/DigiCertSHA2SecureServerCA -keystore /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.45-30.b13.el7_1.x86_64/jre/lib/security/cacerts
+RUN keytool import -alias AppRootCA -file /tmp/saas.appdynamics.com.cer -keystore /usr/lib/jvm/java-1.8.0-openjdk-1.8.0.45-30.b13.el7_1.x86_64/jre/lib/security/cacerts
+
 #RUN cp /etc/pki/java/cacerts /opt/java-agent/ver4.1.7.1/conf/cacerts
 
 COPY controller-info.xml /opt/java-agent/ver4.1.7.1/conf/controller-info.xml
